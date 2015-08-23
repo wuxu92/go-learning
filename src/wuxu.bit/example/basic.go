@@ -295,6 +295,19 @@ func selects() {
       fmt.Println(msg)
     case msg2 := <-c2:
       fmt.Println(msg2)
+    // default:
+      // non-blocking channel
+    //    fmt.Println("select default")
     }
+  }
+}
+
+func rangeChannel() {
+  c := make(chan string, 2)
+  c <- "tomorrow is monday"
+  c <- "fee out"
+  close(c)
+  for str := range c {
+    fmt.Println(str)
   }
 }

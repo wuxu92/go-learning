@@ -21,6 +21,7 @@ func main() {
   channels()
   chanSync()
   selects()
+  rangeChannel()
 }
 
 func get() {
