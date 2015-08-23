@@ -20,6 +20,7 @@ func main() {
   errors()
   channels()
   chanSync()
+  selects()
 }
 
 func get() {

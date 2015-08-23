@@ -4,6 +4,8 @@ import (
   "fmt"
   "time"
   "math"
+  "math/rand"
+  "strconv"
   // "strconv"
 )
 
@@ -266,4 +268,33 @@ func chanSync() {
   fmt.Println("sync goroutine output", done)
 }
 
+// select part
+func gr1(c chan string) {
+  dur := rand.Intn(300)
+  time.Sleep(time.Millisecond * time.Duration(dur))
+  c <- "gr1 sleep done " + strconv.Itoa(dur)
+}
 
+func gr2(c chan string) {
+  dur := rand.Intn(400)
+  time.Sleep(time.Millisecond * time.Duration(dur))
+  c <- "gr2 sleep done " + strconv.Itoa(dur)
+}
+
+func selects() {
+  c1 := make(chan string)
+  c2 := make(chan string)
+  go gr1(c1);
+  go gr1(c1);
+  go gr2(c2);
+  go gr2(c2);
+
+  for i:=0; i<4; i++ {
+    select {
+    case msg := <-c1:
+      fmt.Println(msg)
+    case msg2 := <-c2:
+      fmt.Println(msg2)
+    }
+  }
+}
