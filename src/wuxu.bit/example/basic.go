@@ -6,6 +6,7 @@ import (
   "math"
   "math/rand"
   "strconv"
+  "sort"
   // "strconv"
 )
 
@@ -311,3 +312,12 @@ func rangeChannel() {
     fmt.Println(str)
   }
 }
+
+func sorts() {
+  strs := []string{"today", "tomorrow", "yesterday", "am who", "make"}
+  sort.Strings(strs)
+  fmt.Println("sorted strings:", strs)
+  fmt.Println(sort.StringsAreSorted(strs))
+}
+
+

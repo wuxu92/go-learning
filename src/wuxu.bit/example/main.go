@@ -22,6 +22,7 @@ func main() {
   chanSync()
   selects()
   rangeChannel()
+  sorts()
 }
 
 func get() {
